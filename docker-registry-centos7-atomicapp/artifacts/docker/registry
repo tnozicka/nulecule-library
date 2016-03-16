@@ -1,0 +1,1 @@
+docker run -d --restart=always -p $registry_port:5000 -v $registry_host_dir:/var/lib/registry:Z -u $docker_user -e REGISTRY_PROXY_REMOTEURL=$registry_proxy_remoteurl $registry_image

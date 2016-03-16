@@ -1,0 +1,37 @@
+# vi:syntax=yaml
+---
+specversion: 0.0.2
+id: docker_registry_nulecule
+
+metadata:
+  name: Docker Registry v2 Nulecule App
+  appversion: 0.0.1
+  description: Atomic app of a Docker Registry v2 (a.k.a. Distribution).
+
+graph:
+- name: registry
+  params:
+  - name: registry_image
+    description: "Registry image"
+    default: "centos/registry:2"
+  - name: registry_host_dir
+    description: "Host directory for storing registry data"
+    default: "/var/lib/registry/"
+  - name: registry_port
+    description: "Registry port"
+    default: 80
+  - name: node_port
+    description: "Node port to expose registry k8s service"
+    default: 0
+  - name: registry_proxy_remoteurl
+    desription: "Registry proxy remoteurl (e.g. https://registry-1.docker.io)"
+    default: ""
+  - name: docker_user
+    description: "User for running inside container"
+    default: 0
+  artifacts:
+    docker:
+    - file://artifacts/docker/registry
+    kubernetes:
+    - file://artifacts/kubernetes/registry-pod.yaml
+    - file://artifacts/kubernetes/registry-svc.yaml
